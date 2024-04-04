@@ -1,0 +1,30 @@
+
+// Build.gradle generated for instrumentation module netflix-zuul-core-1.x
+
+apply plugin: 'java'
+
+dependencies {
+   implementation group: 'com.netflix.zuul', name: 'zuul-core', version: '1.2.0'
+	compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+   
+
+   // New Relic Java Agent dependencies
+   implementation 'com.newrelic.agent.java:newrelic-agent:6.4.0'
+   implementation 'com.newrelic.agent.java:newrelic-api:6.4.0'
+   implementation fileTree(include: ['*.jar'], dir: '../libs')
+   implementation fileTree(include: ['*.jar'], dir: '../test-lib')
+}
+
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'com.newrelic.instrumentation.netflix-zuul-core-1.x'
+    attributes 'Implementation-Vendor': 'New Relic'
+    attributes 'Implementation-Vendor-Id': 'com.newrelic'
+    attributes 'Implementation-Version': 1.0
+  }
+}
+
+verifyInstrumentation {
+   passes 'com.netflix.zuul:zuul-core:[1.2.0,2.1.1)'
+   excludeRegex '.*rc.[1-9]'
+}
