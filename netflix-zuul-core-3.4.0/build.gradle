@@ -27,5 +27,5 @@ jar {
 }
 
 verifyInstrumentation {
-  passesOnly 'com.netflix.zuul:zuul-core:[3.4.0,)'
+  passesOnly 'com.netflix.zuul:zuul-core:[3.4.0,4.0.0)'
 }
